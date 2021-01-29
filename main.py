@@ -8,8 +8,10 @@ def draw_field(field):
     print()
 
 def make_turn(field, turn, player):
-
-    return
+    if field[turn[0]][turn[1]] == ' ':
+        field[turn[0]][turn[1]] = player
+        return True
+    return False
 
 def evaluate_game(field):
 
@@ -28,6 +30,13 @@ if __name__ == '__main__':
 
     play_field = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     draw_field(play_field)
+    turn = [1, 1]
+    print(make_turn(play_field, turn, 'X'))
+    draw_field(play_field)
+    turn = [1, 0]
+    print(make_turn(play_field, turn, 'O'))
+    draw_field(play_field)
+
 #    moove = True
 #    player = 1
 #    while moove:
