@@ -14,8 +14,36 @@ def make_turn(field, turn, symbol):
     return False
 
 def evaluate_game(field):
+    field_set = [{None} for i in range(len(field))]
+    field_rotated_set = [{None} for i in range(len(field[0]))]
+    field_diagonals_set = [{None}, {None}]
 
-    return
+    for row in range(len(field)):
+        for column in range(len(field[row])):
+            element = field[row][column]
+            field_set[row].add(element)
+            field_rotated_set[column].add(element)
+            if row == column:
+                field_diagonals_set[0].add(element)
+            if row == (len(field[row]) - column - 1):
+                field_diagonals_set[1].add(element)
+
+    for row in field_set:
+        row = row.difference({None})
+        if len(row) == 1 and ' ' not in row:
+            return row.pop()
+
+    for row in field_rotated_set:
+        row = row.difference({None})
+        if len(row) == 1 and ' ' not in row:
+            return row.pop()
+
+    for row in field_diagonals_set:
+        row = row.difference({None})
+        if len(row) == 1 and ' ' not in row:
+            return row.pop()
+
+    return ' '
 
 def test_turn(field, turn):
 
@@ -28,14 +56,10 @@ if __name__ == '__main__':
 #    player1_name = input('Ввдедите имя первого игрока (играет крестиками):')
 #    player2_name = input('Ввдедите имя второго игрока (играет ноликами):')
 
-    play_field = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+    play_field = [['X', 'O', 'O'], ['O', 'O', 'X'], ['X', 'O', 'X']]
     draw_field(play_field)
     turn = [1, 1]
-    print(make_turn(play_field, turn, 'X'))
-    draw_field(play_field)
-    turn = [1, 0]
-    print(make_turn(play_field, turn, 'O'))
-    draw_field(play_field)
+    print(evaluate_game(play_field))
 
 #    moove = True
 #    player = 1
