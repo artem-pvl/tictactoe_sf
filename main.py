@@ -7,9 +7,9 @@ def draw_field(field):
     print('   3    '+'  '.join(field[2]))
     print()
 
-def make_turn(field, turn, player):
+def make_turn(field, turn, symbol):
     if field[turn[0]][turn[1]] == ' ':
-        field[turn[0]][turn[1]] = player
+        field[turn[0]][turn[1]] = symbol
         return True
     return False
 
