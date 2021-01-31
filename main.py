@@ -94,8 +94,7 @@ if __name__ == '__main__':
 
         while not make_turn(play_field, list(map(int, list(game_turn))), current_player):
             game_turn = input(f'Ход не корректен! Попробуйте ещё раз, {current_player_name}: ')
-            while not (game_turn.isdigit() and len(game_turn) == 2):
-                game_turn = input(f'Попробуйте ввести ход ещё раз, {current_player_name}:')
+            game_turn = check_turn(current_player_name, game_turn)
 
         game_result = evaluate_game(play_field)
 
